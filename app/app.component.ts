@@ -1,25 +1,47 @@
 import { Component } from '@angular/core'
 
+interface Food {
+  id: number,
+  name: string,
+  yummy: boolean
+}
+
 @Component({
   selector: 'app-root',
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      <input
-        type="text"
-        [value]="name"
-        (input)="handleChange($event.target.value)">
-
-      <div *ngIf="name.length > 2">
-        Searching for ... {{ name }}
-      </div>
+      <h2> Foods </h2>
+      <ul>
+        <li *ngFor="let food of foods; let i = index">
+          {{ i }}: {{ food.name }}
+          <span *ngIf="food.yummy === true">is totally delish!</span>
+        </li>
+      </ul>
     </div>
   `
 })
  
 export class AppComponent {
-  name: string = ''
-  handleChange(value: string) {
-    this.name = value 
-  }
+  foods: Food[] = [{
+    id: 1,
+    name: '🥑',
+    yummy: true
+  },{
+    id: 2,
+    name: '🍭',
+    yummy: false
+  },{
+    id: 3,
+    name: '🍦',
+    yummy: false
+  },{
+    id: 4,
+    name: '🌮',
+    yummy: true
+  },{
+    id: 5,
+    name: '🍒',
+    yummy: true
+  }]
 }
