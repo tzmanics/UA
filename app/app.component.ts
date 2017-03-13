@@ -4,30 +4,22 @@ import { Component } from '@angular/core'
   selector: 'app-root',
   styleUrls: ['app.component.scss'],
   template: `
-    <div class="app">>
-      <h1>{{ title }}</h1>
+    <div class="app">
       <input
         type="text"
         [value]="name"
-        (input)="handleInput($event)"  
-      >
-      <button (click)="handleButton($event)">
-        Toshify
-      </button>
-      <div>{{ name }}</div>
+        (input)="handleChange($event.target.value)">
+
+      <div *ngIf="name.length > 2">
+        Searching for ... {{ name }}
+      </div>
     </div>
   `
 })
  
 export class AppComponent {
-  name: string = 'Toshi Magoshi Manicsic'
-  handleInput(event: any) {
-    this.name = event.target.value
-  }
-  handleButton(event: any) {
-    this.name = 'Toshi'
-  }
-  constructor() {
-    this.title = 'Tosh Magosh'
+  name: string = ''
+  handleChange(value: string) {
+    this.name = value 
   }
 }
