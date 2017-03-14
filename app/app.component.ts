@@ -13,23 +13,12 @@ interface Food {
     <div class="app">
       <h2> Foods </h2>
       <ul>
-        <li *ngFor="let food of foods; let i = index">
+        <li *ngFor="let food of foods; let i = index;">
           <span
             class="is-yummy"
-            [class.yummy]="food.yummy"
-          ></span>
-          {{ i }}: {{ food.name }}
-        </li>
-      </ul>
-      <h2> Foods Again </h2>
-      <ul>
-        <li *ngFor="let food of foods; let i = index">
-          <span
-            class="is-yummy"
-            [ngClass]="{
-              'yummy': food.yummy,
-              'no-yummy': !food.yummy
-            }"></span>
+            [ngStyle]="{
+              backgroundColor: (food.yummy ? 'lightgreen' : 'pink')
+            }" ></span>
           {{ i }}: {{ food.name }}
         </li>
       </ul>
